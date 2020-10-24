@@ -9,13 +9,7 @@ swagger:
 spring:
   data:
     mongodb:
-      authentication-database: admin
-      database: ${DATABASE:bscskol}
-      host: ${HOST:127.0.0.1}
-      port: ${PORT:27017}
-      username: ${USERNAME:myUserAdmin}
-      password: ${PASSWORD:221727}
-      uri: mongodb+srv://<username>:<password>@cluster0.mrofz.mongodb.net/<dbname>?retryWrites=true&w=majority
+      uri: mongodb+srv://BCSAdmin:qWWp@7pgE3hZ@cluster0.mrofz.mongodb.net/bcsdb?retryWrites=true&w=majority
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
