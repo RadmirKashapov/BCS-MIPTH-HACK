@@ -22,5 +22,5 @@ data class Article(
 
 data class Rates(
         var userId: String?,
-        var preference: UserPreference? = UserPreference.NONE
+        var preference: Int = 0
 )
