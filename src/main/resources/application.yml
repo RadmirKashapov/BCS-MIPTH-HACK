@@ -9,7 +9,7 @@ swagger:
 spring:
   data:
     mongodb:
-      uri: mongodb+srv://BCSAdmin:qWWp@7pgE3hZ@cluster0.mrofz.mongodb.net/bcsdb?retryWrites=true&w=majority
+      uri: mongodb+srv://BCSAdmin:GwcA0ZYsvOFvY8jc@cluster0.mrofz.mongodb.net/bcsdb?retryWrites=true&w=majority
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
