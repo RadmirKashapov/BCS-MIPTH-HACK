@@ -15,6 +15,7 @@ spring:
       port: ${PORT:27017}
       username: ${USERNAME:myUserAdmin}
       password: ${PASSWORD:221727}
+      uri: mongodb+srv://<username>:<password>@cluster0.mrofz.mongodb.net/<dbname>?retryWrites=true&w=majority
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: true
