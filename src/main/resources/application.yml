@@ -1,0 +1,21 @@
+jwt:
+  signing-key: ${JWT_KEY:test_key_bsc_skol}
+
+swagger:
+  admin:
+    login: ${SWAGGER_ADMIN:admin}
+    password: ${SWAGGER_PASSWORD:bcs-recommended}
+
+spring:
+  data:
+    mongodb:
+      authentication-database: admin
+      database: ${DATABASE:bscskol}
+      host: ${HOST:127.0.0.1}
+      port: ${PORT:27017}
+      username: ${USERNAME:myUserAdmin}
+      password: ${PASSWORD:221727}
+  jackson:
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: true
+      indent-output: true
