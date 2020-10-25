@@ -33,7 +33,7 @@ class ArticleController : BaseController() {
 
     @GetMapping("all")
     fun getAll(
-            @RequestParam(defaultValue = "50") page: Int
+            @RequestParam(defaultValue = "0") page: Int
     ): ResponseEntity<Page<ArticleDTO>> = processServiceExceptions {
         try {
             val pageRequest = PageRequest.of(page, 10)
@@ -45,7 +45,7 @@ class ArticleController : BaseController() {
 
     @PostMapping("all")
     fun getAll(
-            @RequestParam(defaultValue = "50") page: Int,
+            @RequestParam(defaultValue = "0") page: Int,
             @RequestBody(required = false) @Valid articleGetRq: ArticleGetRq?
     ): ResponseEntity<Page<ArticleDTO>> = processServiceExceptions {
         try {
@@ -80,7 +80,7 @@ class ArticleController : BaseController() {
 
     @GetMapping("recommended")
     fun getRecommendedArticles(
-            @RequestParam(defaultValue = "50") page: Int
+            @RequestParam(defaultValue = "0") page: Int
     ): ResponseEntity<Page<ArticleDTO>> = processServiceExceptions {
         try {
             val pageRequest = PageRequest.of(page, 10)
