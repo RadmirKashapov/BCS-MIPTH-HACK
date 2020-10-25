@@ -42,10 +42,10 @@ class CategoryController : BaseController() {
     @PostMapping("all/ids")
     fun getByIds(
             @RequestBody ids: List<String>,
-            @RequestParam(defaultValue = "50") page: Int,
+            @RequestParam(defaultValue = "0") page: Int,
     ): ResponseEntity<Page<CategoryDTO>> = processServiceExceptions {
         try {
-            val pageRequest = PageRequest.of(page, 10)
+            val pageRequest = PageRequest.of(page, 50)
             ResponseEntity.ok(categoryService.getCategoriesByIds(ids, pageRequest))
         } catch (ex: EntityNotFoundException) {
             throw ResponseStatusException(HttpStatus.NOT_FOUND, "Categories Not Found", ex)
