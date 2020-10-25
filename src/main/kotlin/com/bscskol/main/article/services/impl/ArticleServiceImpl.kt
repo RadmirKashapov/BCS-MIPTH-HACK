@@ -1,7 +1,6 @@
 package com.bscskol.main.article.services.impl
 
 import com.bscskol.main.article.entities.Article
-import com.bscskol.main.article.entities.Rates
 import com.bscskol.main.article.mappers.ArticleMapper
 import com.bscskol.main.article.mappers.ArticleMapperImpl
 import com.bscskol.main.article.repositories.ArticleRepository
@@ -11,6 +10,7 @@ import com.bscskol.main.article.vo.ArticleGetRq
 import com.bscskol.main.article.vo.ArticlePreferenceRq
 import com.bscskol.main.core.errors.EntityNotFoundException
 import com.bscskol.main.core.services.impl.BaseServiceImpl
+import com.bscskol.main.user.entities.Rates
 import com.bscskol.main.user.entities.UserLevel
 import com.bscskol.main.user.services.UserService
 import org.springframework.beans.factory.annotation.Autowired
@@ -55,11 +55,11 @@ class ArticleServiceImpl(
 
     }
 
-    override fun rateArticle(articlePreferenceRq: ArticlePreferenceRq, userId: String): ArticleDTO {
+    override fun rateArticle(articlePreferenceRq: ArticlePreferenceRq, userId: String) {
         val user = userService.findByIdOrThrow(userId)
-        return findByIdOrThrow(articlePreferenceRq.articleId!!).apply {
-            this.rates.plus(Rates(userId = userId, preference = articlePreferenceRq.preference))
-        }.let(mapper::convertToDto)
+        userService.save(user.apply {
+            this.ratedArticles.plus(Rates(articleId = findByIdOrThrow(articlePreferenceRq.articleId!!).id, preference = articlePreferenceRq.preference))
+        })
     }
 
 

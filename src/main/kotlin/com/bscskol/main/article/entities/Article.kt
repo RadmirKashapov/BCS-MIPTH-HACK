@@ -16,11 +16,5 @@ data class Article(
         var topic: String? = null,
         var articleLink: String? = null,
         var dateOfPublication: Timestamp = Timestamp(0),
-        var imgSrc: String? = null,
-        var rates: Set<Rates> = setOf()
+        var imgSrc: String? = null
 ): BaseEntity()
-
-data class Rates(
-        var userId: String?,
-        var preference: Int = 0
-)

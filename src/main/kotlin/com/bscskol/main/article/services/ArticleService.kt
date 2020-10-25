@@ -21,7 +21,7 @@ interface ArticleService : BaseService<Article, ArticleRepository> {
     fun getAllByLevelAndCategoryPageable(articleRq: ArticleGetRq?, userId: String, pageable: Pageable): Page<ArticleDTO>
 
     @Throws(EntityNotFoundException::class)
-    fun rateArticle(articlePreferenceRq: ArticlePreferenceRq, userId: String): ArticleDTO
+    fun rateArticle(articlePreferenceRq: ArticlePreferenceRq, userId: String)
 
     fun create(articleDTO: ArticleDTO): ArticleDTO
 }

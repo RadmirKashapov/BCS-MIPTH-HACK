@@ -15,5 +15,12 @@ data class User(
         var password: String? = null,
 
         // TODO: Add enum for roles
-        var role: Int = 0
+        var role: Int = 0,
+        var ratedArticles: Set<Rates> = setOf()
 ) : BaseEntity()
+
+
+data class Rates(
+        var articleId: String?,
+        var preference: Int = 0
+)

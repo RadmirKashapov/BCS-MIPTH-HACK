@@ -1,6 +1,5 @@
 package com.bscskol.main.article.vo
 
-import com.bscskol.main.article.entities.Rates
 import com.bscskol.main.core.vo.BaseDTO
 import com.bscskol.main.core.vo.RestView
 import com.bscskol.main.user.entities.UserLevel
@@ -33,7 +32,5 @@ data class ArticleDTO(
         var dateOfPublication: Timestamp = Timestamp(0),
 
         @JsonView(RestView.Request::class)
-        var imgSrc: String? = null,
-
-        var rates: Set<Rates> = setOf()
+        var imgSrc: String? = null
 ) : BaseDTO()

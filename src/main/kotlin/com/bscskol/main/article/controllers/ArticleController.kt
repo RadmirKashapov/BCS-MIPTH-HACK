@@ -66,7 +66,7 @@ class ArticleController : BaseController() {
     @PostMapping("rate")
     fun rateArticle(
             @Valid @RequestBody(required = true) rate: ArticlePreferenceRq
-    ): ResponseEntity<ArticleDTO> = processServiceExceptions {
+    ): ResponseEntity<*> = processServiceExceptions {
         ResponseEntity.ok(articleService.rateArticle(rate, authorizationService.currentUserIdOrDie()))
     }
 
