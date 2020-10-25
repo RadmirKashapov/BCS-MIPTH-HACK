@@ -5,6 +5,7 @@ import com.bscskol.main.core.vo.RestView
 import com.bscskol.main.user.entities.UserLevel
 import com.fasterxml.jackson.annotation.JsonView
 import java.sql.Timestamp
+import java.util.*
 
 data class ArticleDTO(
         @JsonView(RestView.Request::class)
@@ -29,7 +30,7 @@ data class ArticleDTO(
         var articleLink: String? = null,
 
         @JsonView(RestView.Request::class)
-        var dateOfPublication: Timestamp = Timestamp(0),
+        var dateOfPublication: Date = Date(0),
 
         @JsonView(RestView.Request::class)
         var imgSrc: String? = null

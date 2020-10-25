@@ -24,4 +24,9 @@ interface ArticleService : BaseService<Article, ArticleRepository> {
     fun rateArticle(articlePreferenceRq: ArticlePreferenceRq, userId: String)
 
     fun create(articleDTO: ArticleDTO): ArticleDTO
+
+    fun getAllByIds(ids: List<String>, pageable: Pageable): Page<ArticleDTO>
+
+    @Throws(EntityNotFoundException::class)
+    fun getRecommended(userId: String, pageable: Pageable): Page<ArticleDTO>
 }

@@ -9,5 +9,5 @@ import org.springframework.data.domain.Pageable
 interface ArticleRepository : BaseRepository<Article> {
     fun findAllByCategoriesContainsAndRequiredLevel(categories: List<String>, requiredLevel: UserLevel, pageable: Pageable): Page<Article>
     fun findAllByRequiredLevel(requiredLevel: UserLevel, pageable: Pageable): Page<Article>
-
+    fun findAllByIdIn(ids: List<String>, pageable: Pageable): Page<Article>
 }

@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonView
 import com.bscskol.main.core.vo.BaseDTO
 import com.bscskol.main.core.vo.RestView
 import com.bscskol.main.user.entities.Rates
+import com.bscskol.main.user.entities.UserLevel
 import javax.validation.constraints.Email
 
 data class UserDTO(
@@ -19,6 +20,9 @@ data class UserDTO(
         @Email
         var email: String? = null,
 
-        var ratedArticles: Set<Rates> = setOf()
+        var ratedArticles: MutableList<Rates> = mutableListOf(),
+
+        @JsonView(value = [RestView.Request::class])
+        var userLevel: UserLevel? = UserLevel.NEWBIE
 
 ) : BaseDTO()

@@ -5,6 +5,7 @@ import com.bscskol.main.user.entities.UserLevel
 import com.bscskol.main.user.entities.UserPreference
 import org.springframework.data.mongodb.core.mapping.Document
 import java.sql.Timestamp
+import java.util.*
 
 @Document
 data class Article(
@@ -15,6 +16,6 @@ data class Article(
         var rubric: String? = null,
         var topic: String? = null,
         var articleLink: String? = null,
-        var dateOfPublication: Timestamp = Timestamp(0),
+        var dateOfPublication: Date = Date(0),
         var imgSrc: String? = null
 ): BaseEntity()
