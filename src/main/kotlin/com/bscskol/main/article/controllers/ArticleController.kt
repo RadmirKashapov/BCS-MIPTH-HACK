@@ -36,7 +36,7 @@ class ArticleController : BaseController() {
             @RequestParam(defaultValue = "0") page: Int
     ): ResponseEntity<Page<ArticleDTO>> = processServiceExceptions {
         try {
-            val pageRequest = PageRequest.of(page, 10)
+            val pageRequest = PageRequest.of(page, 50)
             ResponseEntity.ok(articleService.getAll(pageRequest))
         } catch (ex: EntityNotFoundException) {
             throw ResponseStatusException(HttpStatus.NOT_FOUND, "Articles Not Found", ex)
@@ -49,7 +49,7 @@ class ArticleController : BaseController() {
             @RequestBody(required = false) @Valid articleGetRq: ArticleGetRq?
     ): ResponseEntity<Page<ArticleDTO>> = processServiceExceptions {
         try {
-            val pageRequest = PageRequest.of(page, 10)
+            val pageRequest = PageRequest.of(page, 50)
             ResponseEntity.ok(articleService.getAllByLevelAndCategoryPageable(articleGetRq, authorizationService.currentUserIdOrDie(), pageRequest))
         } catch (ex: EntityNotFoundException) {
             throw ResponseStatusException(HttpStatus.NOT_FOUND, "Articles Not Found", ex)
@@ -83,7 +83,7 @@ class ArticleController : BaseController() {
             @RequestParam(defaultValue = "0") page: Int
     ): ResponseEntity<Page<ArticleDTO>> = processServiceExceptions {
         try {
-            val pageRequest = PageRequest.of(page, 10)
+            val pageRequest = PageRequest.of(page, 50)
             ResponseEntity.ok(articleService.getRecommended(authorizationService.currentUserIdOrDie(), pageRequest))
         } catch (ex: EntityNotFoundException) {
             throw ResponseStatusException(HttpStatus.NOT_FOUND, "Articles Not Found", ex)
