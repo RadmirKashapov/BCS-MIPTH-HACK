@@ -1,6 +1,7 @@
 package com.bscskol.main.article.services.impl
 
 import com.bscskol.main.article.entities.Article
+import com.bscskol.main.article.entities.SlopeOne
 import com.bscskol.main.article.mappers.ArticleMapper
 import com.bscskol.main.article.mappers.ArticleMapperImpl
 import com.bscskol.main.article.repositories.ArticleRepository
@@ -9,6 +10,7 @@ import com.bscskol.main.article.vo.ArticleDTO
 import com.bscskol.main.article.vo.ArticleGetRq
 import com.bscskol.main.article.vo.ArticlePreferenceRq
 import com.bscskol.main.core.errors.EntityNotFoundException
+import com.bscskol.main.core.errors.SetKingException
 import com.bscskol.main.core.services.impl.BaseServiceImpl
 import com.bscskol.main.user.entities.Rates
 import com.bscskol.main.user.entities.UserLevel
@@ -29,6 +31,10 @@ class ArticleServiceImpl(
 
     override fun create(articleDTO: ArticleDTO): ArticleDTO {
         return save(mapper.convertToModel(articleDTO)).let(mapper::convertToDto)
+    }
+
+    override fun getAllByIds(ids: List<String>, pageable: Pageable): Page<ArticleDTO> {
+        return repository.findAllByIdIn(ids, pageable).map(mapper::convertToDto)
     }
 
     override fun getAll(pageable: Pageable): Page<ArticleDTO> {
@@ -55,12 +61,33 @@ class ArticleServiceImpl(
 
     }
 
+
+
     override fun rateArticle(articlePreferenceRq: ArticlePreferenceRq, userId: String) {
         val user = userService.findByIdOrThrow(userId)
         userService.save(user.apply {
-            this.ratedArticles.plus(Rates(articleId = findByIdOrThrow(articlePreferenceRq.articleId!!).id, preference = articlePreferenceRq.preference))
+            this.ratedArticles.add(Rates(articleId = findByIdOrThrow(articlePreferenceRq.articleId!!).id, preference = articlePreferenceRq.preference))
         })
     }
 
+    @Throws(EntityNotFoundException::class)
+    override fun getRecommended(userId: String, pageable: Pageable): Page<ArticleDTO> {
+        val result = SlopeOne.slopeOne(userService.findAll().toList())[userService.findByIdOrThrow(userId)]!!
+                .map { (key, value) -> key to value }.toMutableList().sortedBy { i -> i.second }
+
+        var articles: MutableList<String> = mutableListOf()
+
+        if (result.isNotEmpty()) {
+            for (i in result.indices) {
+                if (i == 7) {
+                    break
+                }
+
+                articles.add(result[i].first.itemName!!)
+            }
+        }
+
+        return getAllByIds(articles.toList(), pageable)
+    }
 
 }

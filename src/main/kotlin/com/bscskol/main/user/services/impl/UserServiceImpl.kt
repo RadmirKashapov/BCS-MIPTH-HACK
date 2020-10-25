@@ -35,4 +35,8 @@ class UserServiceImpl(
         return getUserByIdOrThrow(id)
     }
 
+    override fun getAllByRatedArticlesHasArticleId(articleId: String): List<User> {
+        return repository.findAllByRatedArticlesHasArticleId(articleId)
+    }
+
 }

@@ -28,6 +28,7 @@ dependencies {
 	implementation("org.jetbrains.kotlin:kotlin-reflect")
 	implementation("org.jetbrains.kotlin:kotlin-stdlib-jdk8")
 	implementation("org.springframework.boot:spring-boot-starter-validation")
+	implementation("com.github.haifengl:smile-core:2.5.3")
 
 	implementation("org.mapstruct:mapstruct:1.3.1.Final")
 	kapt("org.mapstruct:mapstruct-processor:1.3.1.Final")

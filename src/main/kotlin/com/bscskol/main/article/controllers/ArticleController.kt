@@ -78,4 +78,16 @@ class ArticleController : BaseController() {
         ResponseEntity.ok(articleService.create(articleDTO))
     }
 
+    @GetMapping("recommended")
+    fun getRecommendedArticles(
+            @RequestParam(defaultValue = "50") page: Int
+    ): ResponseEntity<Page<ArticleDTO>> = processServiceExceptions {
+        try {
+            val pageRequest = PageRequest.of(page, 10)
+            ResponseEntity.ok(articleService.getRecommended(authorizationService.currentUserIdOrDie(), pageRequest))
+        } catch (ex: EntityNotFoundException) {
+            throw ResponseStatusException(HttpStatus.NOT_FOUND, "Articles Not Found", ex)
+        }
+    }
+
 }

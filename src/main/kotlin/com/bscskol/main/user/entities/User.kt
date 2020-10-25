@@ -16,7 +16,8 @@ data class User(
 
         // TODO: Add enum for roles
         var role: Int = 0,
-        var ratedArticles: Set<Rates> = setOf()
+        var ratedArticles: MutableList<Rates> = mutableListOf(),
+        var userLevel: UserLevel? = UserLevel.NEWBIE
 ) : BaseEntity()
 
 

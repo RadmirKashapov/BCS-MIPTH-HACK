@@ -18,5 +18,7 @@ interface UserService : BaseService<User, UserRepository> {
 
     fun upsertUser(id: String, user: UserDTO): UserDTO
 
+    fun getAllByRatedArticlesHasArticleId(articleId:String): List<User>
+
 }
 
